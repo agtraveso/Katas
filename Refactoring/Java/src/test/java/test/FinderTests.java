@@ -37,9 +37,9 @@ public class FinderTests {
     Finder finder = new Finder(list);
 
     PersonPair result = finder.Find(FindCriteria.One);
-    assertEquals(null, result.P1);
+    assertEquals(null, result.one);
 
-    assertEquals(null, result.P2);
+    assertEquals(null, result.other);
   }
 
   @Test
@@ -51,8 +51,8 @@ public class FinderTests {
 
     PersonPair result = finder.Find(FindCriteria.One);
 
-    assertEquals(null, result.P1);
-    assertEquals(null, result.P2);
+    assertEquals(null, result.one);
+    assertEquals(null, result.other);
   }
 
   @Test
@@ -64,8 +64,8 @@ public class FinderTests {
 
     PersonPair result = finder.Find(FindCriteria.One);
 
-    assertEquals(sue, result.P1);
-    assertEquals(greg, result.P2);
+    assertEquals(sue, result.one);
+    assertEquals(greg, result.other);
   }
 
   @Test
@@ -78,8 +78,8 @@ public class FinderTests {
 
     PersonPair result = finder.Find(FindCriteria.Two);
 
-    assertEquals(greg, result.P1);
-    assertEquals(mike, result.P2);
+    assertEquals(greg, result.one);
+    assertEquals(mike, result.other);
   }
 
   @Test
@@ -93,8 +93,8 @@ public class FinderTests {
 
     PersonPair result = finder.Find(FindCriteria.Two);
 
-    assertEquals(sue, result.P1);
-    assertEquals(sarah, result.P2);
+    assertEquals(sue, result.one);
+    assertEquals(sarah, result.other);
   }
 
   @Test
@@ -109,7 +109,7 @@ public class FinderTests {
 
     PersonPair result = finder.Find(FindCriteria.One);
 
-    assertEquals(sue, result.P1);
-    assertEquals(greg, result.P2);
+    assertEquals(sue, result.one);
+    assertEquals(greg, result.other);
   }
 }
