@@ -2,24 +2,22 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import algorithm.F;
 import algorithm.FT;
 import algorithm.Finder;
-import algorithm.Thing;
+import algorithm.Person;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 public class FinderTests {
 
-  Thing sue = new Thing();
-  Thing greg = new Thing();
-  Thing sarah = new Thing();
-  Thing mike = new Thing();
+  Person sue = new Person();
+  Person greg = new Person();
+  Person sarah = new Person();
+  Person mike = new Person();
 
   @Before
   public void setup() {
@@ -35,7 +33,7 @@ public class FinderTests {
 
   @Test
   public void Returns_Empty_Results_When_Given_Empty_List() {
-    List<Thing> list = new ArrayList<Thing>();
+    List<Person> list = new ArrayList<>();
     Finder finder = new Finder(list);
 
     F result = finder.Find(FT.One);
@@ -46,7 +44,7 @@ public class FinderTests {
 
   @Test
   public void Returns_Empty_Results_When_Given_One_Person() {
-    List<Thing> list = new ArrayList<Thing>();
+    List<Person> list = new ArrayList<>();
     list.add(sue);
 
     Finder finder = new Finder(list);
@@ -59,7 +57,7 @@ public class FinderTests {
 
   @Test
   public void Returns_Closest_Two_For_Two_People() {
-    List<Thing> list = new ArrayList<Thing>();
+    List<Person> list = new ArrayList<>();
     list.add(sue);
     list.add(greg);
     Finder finder = new Finder(list);
@@ -72,7 +70,7 @@ public class FinderTests {
 
   @Test
   public void Returns_Furthest_Two_For_Two_People() {
-    List<Thing> list = new ArrayList<Thing>();
+    List<Person> list = new ArrayList<>();
     list.add(mike);
     list.add(greg);
 
@@ -86,7 +84,7 @@ public class FinderTests {
 
   @Test
   public void Returns_Furthest_Two_For_Four_People() {
-    List<Thing> list = new ArrayList<Thing>();
+    List<Person> list = new ArrayList<>();
     list.add(sue);
     list.add(sarah);
     list.add(mike);
@@ -101,7 +99,7 @@ public class FinderTests {
 
   @Test
   public void Returns_Closest_Two_For_Four_People() {
-    List<Thing> list = new ArrayList<Thing>();
+    List<Person> list = new ArrayList<>();
     list.add(sue);
     list.add(sarah);
     list.add(mike);
