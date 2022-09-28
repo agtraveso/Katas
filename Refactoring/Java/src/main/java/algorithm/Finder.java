@@ -10,7 +10,7 @@ public class Finder {
     _p = p;
   }
 
-  public PersonPair Find(FindCriteria ft) {
+  public PersonPair Find(DefaultAgeGapCriteria ft) {
     List<PersonPair> tr = new ArrayList<>();
 
     for (int i = 0; i < _p.size() - 1; i++) {
@@ -32,23 +32,6 @@ public class Finder {
       return new PersonPair();
     }
 
-    PersonPair answer = tr.get(0);
-    for (PersonPair result : tr) {
-      switch (ft) {
-        case One:
-          if (result.ageGapInMillis < answer.ageGapInMillis) {
-            answer = result;
-          }
-          break;
-
-        case Two:
-          if (result.ageGapInMillis > answer.ageGapInMillis) {
-            answer = result;
-          }
-          break;
-      }
-    }
-
-    return answer;
+    return tr.stream().reduce((ft::apply)).orElseThrow();
   }
 }

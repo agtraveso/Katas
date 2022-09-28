@@ -2,7 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
-import algorithm.FindCriteria;
+import algorithm.DefaultAgeGapCriteria;
 import algorithm.Finder;
 import algorithm.Person;
 import algorithm.PersonPair;
@@ -23,7 +23,7 @@ public class FinderTests {
     List<Person> list = new ArrayList<>();
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FindCriteria.One);
+    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
     assertEquals(null, result.one);
 
     assertEquals(null, result.other);
@@ -36,7 +36,7 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FindCriteria.One);
+    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
 
     assertEquals(null, result.one);
     assertEquals(null, result.other);
@@ -49,7 +49,7 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FindCriteria.One);
+    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
 
     assertEquals(sue, result.one);
     assertEquals(greg, result.other);
@@ -63,7 +63,7 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FindCriteria.Two);
+    PersonPair result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
 
     assertEquals(greg, result.one);
     assertEquals(mike, result.other);
@@ -78,7 +78,7 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FindCriteria.Two);
+    PersonPair result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
 
     assertEquals(sue, result.one);
     assertEquals(sarah, result.other);
@@ -94,7 +94,7 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FindCriteria.One);
+    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
 
     assertEquals(sue, result.one);
     assertEquals(greg, result.other);
