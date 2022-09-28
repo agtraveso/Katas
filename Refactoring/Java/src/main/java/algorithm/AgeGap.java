@@ -6,34 +6,28 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class AgeGap {
-  private final Person one;
-  private final Person other;
+  private final Person youngest;
+  private final Person oldest;
   private final long ageGapInMillis;
 
   public AgeGap(Person one, Person other) {
-    if(one!= null && other != null) {
-      if(one.getBirthdate().getTime() <  other.getBirthdate().getTime()) {
-        this.one = one;
-        this.other = other;
-      } else {
-        this.one = other;
-        this.other = one;
-      }
-
-      this.ageGapInMillis = this.other.getBirthdate().getTime() - this.one.getBirthdate().getTime();
+    if (one.isYoungerThan(other)) {
+      this.youngest = one;
+      this.oldest = other;
     } else {
-      this.one = null;
-      this.other = null;
-      this.ageGapInMillis = 0;
+      this.youngest = other;
+      this.oldest = one;
     }
+
+    this.ageGapInMillis = this.oldest.ageGapWith(this.youngest);
   }
 
-  public Person getOne() {
-    return one;
+  public Person getYoungest() {
+    return youngest;
   }
 
-  public Person getOther() {
-    return other;
+  public Person getOldest() {
+    return oldest;
   }
 
   public long getAgeGapInMillis() {
@@ -56,16 +50,16 @@ public class AgeGap {
 
     return new EqualsBuilder()
         .append(ageGapInMillis, ageGap.ageGapInMillis)
-        .append(one, ageGap.one)
-        .append(other, ageGap.other)
+        .append(youngest, ageGap.youngest)
+        .append(oldest, ageGap.oldest)
         .isEquals();
   }
 
   @Override
   public int hashCode() {
     return new HashCodeBuilder(17, 37)
-        .append(one)
-        .append(other)
+        .append(youngest)
+        .append(oldest)
         .append(ageGapInMillis)
         .toHashCode();
   }
@@ -73,8 +67,8 @@ public class AgeGap {
   @Override
   public String toString() {
     return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-        .append("one", one)
-        .append("other", other)
+        .append("one", youngest)
+        .append("other", oldest)
         .append("ageGapInMillis", ageGapInMillis)
         .toString();
   }

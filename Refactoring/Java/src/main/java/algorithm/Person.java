@@ -24,6 +24,14 @@ public class Person {
     return birthdate;
   }
 
+  public boolean isYoungerThan(Person other) {
+    return this.birthdate.before(other.getBirthdate());
+  }
+
+  public long ageGapWith(Person other) {
+    return this.birthdate.getTime() - other.getBirthdate().getTime();
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
