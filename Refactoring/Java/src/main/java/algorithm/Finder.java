@@ -10,7 +10,7 @@ public class Finder {
     _p = p;
   }
 
-  public PersonPair Find(FT ft) {
+  public PersonPair Find(FindCriteria ft) {
     List<PersonPair> tr = new ArrayList<PersonPair>();
 
     for (int i = 0; i < _p.size() - 1; i++) {

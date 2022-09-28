@@ -3,7 +3,7 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import algorithm.PersonPair;
-import algorithm.FT;
+import algorithm.FindCriteria;
 import algorithm.Finder;
 import algorithm.Person;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class FinderTests {
     List<Person> list = new ArrayList<>();
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FT.One);
+    PersonPair result = finder.Find(FindCriteria.One);
     assertEquals(null, result.P1);
 
     assertEquals(null, result.P2);
@@ -49,7 +49,7 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FT.One);
+    PersonPair result = finder.Find(FindCriteria.One);
 
     assertEquals(null, result.P1);
     assertEquals(null, result.P2);
@@ -62,7 +62,7 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FT.One);
+    PersonPair result = finder.Find(FindCriteria.One);
 
     assertEquals(sue, result.P1);
     assertEquals(greg, result.P2);
@@ -76,7 +76,7 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FT.Two);
+    PersonPair result = finder.Find(FindCriteria.Two);
 
     assertEquals(greg, result.P1);
     assertEquals(mike, result.P2);
@@ -91,7 +91,7 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FT.Two);
+    PersonPair result = finder.Find(FindCriteria.Two);
 
     assertEquals(sue, result.P1);
     assertEquals(sarah, result.P2);
@@ -107,7 +107,7 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(FT.One);
+    PersonPair result = finder.Find(FindCriteria.One);
 
     assertEquals(sue, result.P1);
     assertEquals(greg, result.P2);
