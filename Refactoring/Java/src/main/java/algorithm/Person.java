@@ -3,22 +3,70 @@ package algorithm;
 import java.util.Date;
 
 public class Person {
-  public String name;
-  public Date birthDate;
+  private final String name;
+  private final Date birthdate;
+
+
+  private Person(String name, Date birthdate) {
+    this.name = name;
+    this.birthdate = birthdate;
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public Date getBirthdate() {
+    return birthdate;
   }
 
-  public Date getBirthDate() {
-    return birthDate;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (!(o instanceof Person person)) {
+      return false;
+    }
+
+    return new org.apache.commons.lang3.builder.EqualsBuilder()
+        .append(name, person.name)
+        .append(birthdate, person.birthdate)
+        .isEquals();
   }
 
-  public void setBirthDate(Date birthDate) {
-    this.birthDate = birthDate;
+  @Override
+  public int hashCode() {
+    return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
+        .append(name)
+        .append(birthdate)
+        .toHashCode();
+  }
+
+  public static final class Builder {
+
+    private String name;
+    private Date birthdate;
+
+    private Builder() {}
+
+    public Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder birthdate(Date birthdate) {
+      this.birthdate = birthdate;
+      return this;
+    }
+
+    public Person build() {
+      return new Person(name, birthdate);
+    }
   }
 }

@@ -11,19 +11,19 @@ public class Finder {
   }
 
   public PersonPair Find(FindCriteria ft) {
-    List<PersonPair> tr = new ArrayList<PersonPair>();
+    List<PersonPair> tr = new ArrayList<>();
 
     for (int i = 0; i < _p.size() - 1; i++) {
       for (int j = i + 1; j < _p.size(); j++) {
         PersonPair r = new PersonPair();
-        if (_p.get(i).birthDate.getTime() < _p.get(j).birthDate.getTime()) {
+        if (_p.get(i).getBirthdate().getTime() < _p.get(j).getBirthdate().getTime()) {
           r.one = _p.get(i);
           r.other = _p.get(j);
         } else {
           r.one = _p.get(j);
           r.other = _p.get(i);
         }
-        r.ageGapInMillis = r.other.birthDate.getTime() - r.one.birthDate.getTime();
+        r.ageGapInMillis = r.other.getBirthdate().getTime() - r.one.getBirthdate().getTime();
         tr.add(r);
       }
     }
