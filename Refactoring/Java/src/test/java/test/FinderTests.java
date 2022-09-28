@@ -2,10 +2,10 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import algorithm.AgeGap;
 import algorithm.DefaultAgeGapCriteria;
 import algorithm.Finder;
 import algorithm.Person;
-import algorithm.PersonPair;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,10 +23,9 @@ public class FinderTests {
     List<Person> list = new ArrayList<>();
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
-    assertEquals(null, result.one);
-
-    assertEquals(null, result.other);
+    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    assertEquals(null, result.getOne());
+    assertEquals(null, result.getOther());
   }
 
   @Test
@@ -36,10 +35,10 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
 
-    assertEquals(null, result.one);
-    assertEquals(null, result.other);
+    assertEquals(null, result.getOne());
+    assertEquals(null, result.getOther());
   }
 
   @Test
@@ -49,10 +48,10 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
 
-    assertEquals(sue, result.one);
-    assertEquals(greg, result.other);
+    assertEquals(sue, result.getOne());
+    assertEquals(greg, result.getOther());
   }
 
   @Test
@@ -63,10 +62,10 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
+    AgeGap result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
 
-    assertEquals(greg, result.one);
-    assertEquals(mike, result.other);
+    assertEquals(greg, result.getOne());
+    assertEquals(mike, result.getOther());
   }
 
   @Test
@@ -78,10 +77,10 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
+    AgeGap result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
 
-    assertEquals(sue, result.one);
-    assertEquals(sarah, result.other);
+    assertEquals(sue, result.getOne());
+    assertEquals(sarah, result.getOther());
   }
 
   @Test
@@ -94,9 +93,9 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    PersonPair result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
 
-    assertEquals(sue, result.one);
-    assertEquals(greg, result.other);
+    assertEquals(sue, result.getOne());
+    assertEquals(greg, result.getOther());
   }
 }

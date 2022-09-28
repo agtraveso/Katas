@@ -1,5 +1,5 @@
 package algorithm;
 
 public interface AgeGapCriteria {
-  PersonPair apply(PersonPair one, PersonPair other);
+  AgeGap apply(AgeGap one, AgeGap other);
 }

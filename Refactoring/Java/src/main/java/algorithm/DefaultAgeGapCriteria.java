@@ -3,7 +3,7 @@ package algorithm;
 public enum DefaultAgeGapCriteria implements AgeGapCriteria {
   CLOSEST {
     @Override
-    public PersonPair apply(PersonPair one, PersonPair other) {
+    public AgeGap apply(AgeGap one, AgeGap other) {
       if (one.isAgeGapCloserThan(other)) {
         return one;
       }
@@ -12,7 +12,7 @@ public enum DefaultAgeGapCriteria implements AgeGapCriteria {
   },
   FURTHEST {
     @Override
-    public PersonPair apply(PersonPair one, PersonPair other) {
+    public AgeGap apply(AgeGap one, AgeGap other) {
       if (!one.isAgeGapCloserThan(other)) {
         return one;
       }
