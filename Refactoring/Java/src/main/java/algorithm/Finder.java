@@ -5,21 +5,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class Finder {
-  private final List<Person> _p;
+  private final List<AgeGap> ageGaps = new ArrayList<>();
 
-  public Finder(List<Person> p) {
-    _p = p;
+  public Finder(List<Person> people) {
+    people.forEach(
+        currentPerson ->
+            people.stream()
+                .filter(candidate -> !currentPerson.equals(candidate))
+                .forEach(nextPerson -> ageGaps.add(new AgeGap(currentPerson, nextPerson))));
   }
 
   public Optional<AgeGap> findOne(DefaultAgeGapCriteria ageGapCriteria) {
-    List<AgeGap> tr = new ArrayList<>();
-
-    for (int i = 0; i < _p.size() - 1; i++) {
-      for (int j = i + 1; j < _p.size(); j++) {
-        tr.add(new AgeGap(_p.get(i), _p.get(j)));
-      }
-    }
-
-    return tr.stream().reduce((ageGapCriteria::apply));
+    return this.ageGaps.stream().reduce((ageGapCriteria::apply));
   }
 }
