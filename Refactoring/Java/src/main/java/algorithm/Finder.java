@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Finder {
   private final List<Person> _p;
@@ -10,7 +11,7 @@ public class Finder {
     _p = p;
   }
 
-  public AgeGap Find(DefaultAgeGapCriteria ft) {
+  public Optional<AgeGap> findOne(DefaultAgeGapCriteria ageGapCriteria) {
     List<AgeGap> tr = new ArrayList<>();
 
     for (int i = 0; i < _p.size() - 1; i++) {
@@ -19,10 +20,6 @@ public class Finder {
       }
     }
 
-    if (tr.size() < 1) {
-      return new AgeGap(null, null);
-    }
-
-    return tr.stream().reduce((ft::apply)).orElseThrow();
+    return tr.stream().reduce((ageGapCriteria::apply));
   }
 }

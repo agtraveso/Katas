@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import algorithm.AgeGap;
 import algorithm.DefaultAgeGapCriteria;
@@ -9,6 +9,7 @@ import algorithm.Person;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.junit.Test;
 
 public class FinderTests {
@@ -23,9 +24,9 @@ public class FinderTests {
     List<Person> list = new ArrayList<>();
     Finder finder = new Finder(list);
 
-    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
-    assertEquals(null, result.getOne());
-    assertEquals(null, result.getOther());
+    Optional<AgeGap> result = finder.findOne(DefaultAgeGapCriteria.CLOSEST);
+
+    assertThat(result).isEmpty();
   }
 
   @Test
@@ -35,10 +36,9 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    Optional<AgeGap> result = finder.findOne(DefaultAgeGapCriteria.CLOSEST);
 
-    assertEquals(null, result.getOne());
-    assertEquals(null, result.getOther());
+    assertThat(result).isEmpty();
   }
 
   @Test
@@ -48,10 +48,12 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    Optional<AgeGap> result = finder.findOne(DefaultAgeGapCriteria.CLOSEST);
 
-    assertEquals(sue, result.getOne());
-    assertEquals(greg, result.getOther());
+    assertThat(result).hasValueSatisfying(ageGap -> {
+      assertThat(ageGap.getOne()).isEqualTo(sue);
+      assertThat(ageGap.getOther()).isEqualTo(greg);
+    });
   }
 
   @Test
@@ -62,10 +64,12 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    AgeGap result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
+    Optional<AgeGap> result = finder.findOne(DefaultAgeGapCriteria.FURTHEST);
 
-    assertEquals(greg, result.getOne());
-    assertEquals(mike, result.getOther());
+    assertThat(result).hasValueSatisfying(ageGap -> {
+      assertThat(ageGap.getOne()).isEqualTo(greg);
+      assertThat(ageGap.getOther()).isEqualTo(mike);
+    });
   }
 
   @Test
@@ -77,10 +81,12 @@ public class FinderTests {
     list.add(greg);
     Finder finder = new Finder(list);
 
-    AgeGap result = finder.Find(DefaultAgeGapCriteria.FURTHEST);
+    Optional<AgeGap> result = finder.findOne(DefaultAgeGapCriteria.FURTHEST);
 
-    assertEquals(sue, result.getOne());
-    assertEquals(sarah, result.getOther());
+    assertThat(result).hasValueSatisfying(ageGap -> {
+      assertThat(ageGap.getOne()).isEqualTo(sue);
+      assertThat(ageGap.getOther()).isEqualTo(sarah);
+    });
   }
 
   @Test
@@ -93,9 +99,11 @@ public class FinderTests {
 
     Finder finder = new Finder(list);
 
-    AgeGap result = finder.Find(DefaultAgeGapCriteria.CLOSEST);
+    Optional<AgeGap> result = finder.findOne(DefaultAgeGapCriteria.CLOSEST);
 
-    assertEquals(sue, result.getOne());
-    assertEquals(greg, result.getOther());
+    assertThat(result).hasValueSatisfying(ageGap -> {
+      assertThat(ageGap.getOne()).isEqualTo(sue);
+      assertThat(ageGap.getOther()).isEqualTo(greg);
+    });
   }
 }
